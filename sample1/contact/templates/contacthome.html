@@ -1,0 +1,32 @@
+{% extends "master.html" %}
+
+{% block title %}
+Home Page
+{% endblock %}
+
+{% block contents %}
+<h1>This site is for Contacts</h1>
+<h3>Contacts List</h3>
+<button><a href="/contactadd/">Add Contact</a></button>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Mobile</th>
+        <th>Email</th>
+        <th>City</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    {% for c in contacts %}
+    <tr>
+        <td>{{ c.name }}</td>
+        <td>{{ c.mobile }}</td>
+        <td>{{ c.email }}</td>
+        <td>{{ c.city }}</td>
+        <td><a href="/contactedit/{{ c.id }}">Edit</a></td>
+        <td><a href="/contactdel/{{ c.id }}">Delete</a></td>
+    </tr>
+    {% endfor %}
+</table>
+<br>
+{% endblock %}

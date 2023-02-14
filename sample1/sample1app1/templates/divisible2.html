@@ -1,0 +1,11 @@
+{% extends "master.html" %}
+
+{% block title%}
+    Divisible by {{ num2 }}
+{% endblock %}
+
+{% block contents %}
+    <h1>{{ num1|divisibleby:num2 }}</h1>
+
+    <h3><a href="/">HOME</a></h3>
+{% endblock %}

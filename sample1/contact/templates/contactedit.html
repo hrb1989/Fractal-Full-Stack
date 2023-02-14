@@ -1,0 +1,22 @@
+{% extends "master.html" %}
+
+{% block title %}
+Edit Contact {{ contact.name }}
+{% endblock %}
+
+{% block contents %}
+<h1>Edit Contact</h1>
+<form method="POST" action "{% url 'contactedit' contact.id %}">
+    {% csrf_token %}
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" value="{{ contact.name }}"><br>
+    <label for="mobile">Mobile</label>
+    <input type="text" id="mobile" name="mobile" value="{{ contact.mobile }}"><br>
+    <label for="email">Email</label>
+    <input type="text" id="email" name="email" value="{{ contact.email }}"><br>
+    <label for="city">City</label>
+    <input type="text" id="city" name="city" value="{{ contact.city }}"><br>
+    <input type="Submit" value="Save">
+</form> 
+<br>
+{% endblock %}

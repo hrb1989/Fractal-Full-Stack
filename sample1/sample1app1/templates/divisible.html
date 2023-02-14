@@ -1,0 +1,13 @@
+{% extends "master.html" %}
+
+{% block title%}
+    Divisible by 3
+{% endblock %}
+
+{% block contents %}
+    <h1>{{ number|divisibleby:"3" }}</h1>
+
+    {% lorem 3 p %}
+
+    <h3><a href="/">HOME</a></h3>
+{% endblock %}

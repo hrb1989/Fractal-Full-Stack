@@ -1,0 +1,22 @@
+{% extends "master.html" %}
+
+{% block title %}
+Add Contacts
+{% endblock %}
+
+{% block contents %}
+<h1>Add Contacts</h1>
+<form method="POST" action "{% url 'contactadd' %}">
+    {% csrf_token %}
+    <label for="name">Name</label>
+    <input type="text" name="name" required><br>
+    <label for="mobile">Mobile</label>
+    <input type="text" name="mobile" required><br>
+    <label for="email">Email</label>
+    <input type="text" name="email" required><br>
+    <label for="city">City</label>
+    <input type="text" name="city" required><br>
+    <input type="Submit" value="Save">
+</form> 
+<br>
+{% endblock %}

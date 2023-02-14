@@ -1,0 +1,20 @@
+{% extends "master.html" %}
+
+{% block title%}
+    List of All name
+{% endblock %}
+
+{% block contents %}
+{% with texta="Below are the list of Names" %}
+
+    <h1>Names</h1>
+    <h4>{{ texta }}</h4>
+        <ul>
+            {% for n in names %}
+            <li><a href="details/{{ n.id }}">{{ n.fname }} {{ n.lname }}</a></li>
+            {% endfor %}
+        </ul>
+
+        {% endwith %}
+    <h3><a href="/">HOME</a></h3>
+{% endblock %}
