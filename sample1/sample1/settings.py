@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'sample1app1',
     'contact',
     'ToDo',
+    'django_celery_results',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +128,28 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_HOST =  'smtp.freesmtpservers.com'
+EMAIL_PORT = 25
+
+
+# RabbitMQ settings
+RABBITMQ_HOST = 'localhost'
+RABBITMQ_PORT = 5672
+RABBITMQ_USER = 'guest'
+RABBITMQ_PASSWORD = 'guest'
+
+# Celery settings
+CELERY_BROKER_URL = f'amqp://{RABBITMQ_USER}:{RABBITMQ_PASSWORD}@{RABBITMQ_HOST}:{RABBITMQ_PORT}/'
+
+#Celery Settings:
+#CELERY_BROKER_URL = 'amqp://guest:guest@localhost:5672/'
+CELERY_RESULT_BACKEND = 'django-db'
+#CELERY_CACHE_BACKEND = 'django-cache'
+#CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+#CELERY_ACCEPT_CONTENT = ['json']
+#CELERY_RESULT_SERIALIZER = 'json'
+#CELERY_TASK_SERIALIZER = 'json'
+#CELERY_TIMEZONE = 'UTC'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

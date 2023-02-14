@@ -4,6 +4,8 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import loader
 from .models import Contact
+from django.core.mail import send_mail
+from .tasks import sendRegMailTask
 
 def contact(request):
     contacts = Contact.objects.all()
@@ -24,6 +26,8 @@ def contactadd(request):
         contact.save()
         #context = {}
         #return HttpResponse(template.render(context, request))
+        #res = sendRegMail(request, email)
+        sendRegMailTask.delay(email)
         return redirect('contact')
     else:
         template = loader.get_template('contactadd.html')
@@ -54,3 +58,13 @@ def contactdel(request, id):
     contact = Contact.objects.get(id=id)
     contact.delete()
     return redirect('contact')
+
+def sendRegMail(request, emailID):
+    res = send_mail(
+    'You have been registered',
+    'Registration is successfull on the Fractal Portal',
+    'noreply@samFractal.com',
+    [emailID],
+    fail_silently=False,
+    )
+    return HttpResponse('%s'%res)
